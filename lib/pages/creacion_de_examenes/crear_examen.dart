@@ -140,11 +140,11 @@ class _CrearExamenState extends State<CrearExamen> {
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   foregroundColor:
-                                      MaterialStateProperty.resolveWith(
+                                      WidgetStateProperty.resolveWith(
                                           (states) => const Color.fromARGB(
                                               255, 255, 255, 255)),
                                   backgroundColor:
-                                      MaterialStateProperty.resolveWith(
+                                      WidgetStateProperty.resolveWith(
                                           (states) => const Color.fromARGB(
                                               255, 78, 39, 78)),
                                 ),

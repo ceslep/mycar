@@ -174,13 +174,13 @@ class _AsignarExamenesState extends State<AsignarExamenes> {
               String nombreExamen = procedimientoss[indexx].nombre!;
               String codigoExamen = procedimientoss[indexx].codigo!;
               bool seleccionado = siselect(nombreExamen);
-              MaterialStateProperty<Color> bgColorn =
-                  MaterialStateProperty.resolveWith(
+              WidgetStateProperty<Color> bgColorn =
+                  WidgetStateProperty.resolveWith(
                       (states) => const Color.fromARGB(255, 78, 39, 78));
-              MaterialStateProperty<Color> bgColors =
-                  MaterialStateProperty.resolveWith(
+              WidgetStateProperty<Color> bgColors =
+                  WidgetStateProperty.resolveWith(
                       (states) => const Color.fromARGB(255, 255, 188, 255));
-              MaterialStateProperty<Color> bgColor =
+              WidgetStateProperty<Color> bgColor =
                   seleccionado ? bgColors : bgColorn;
               return Card(
                 color: _isCheckedList[indexx]
@@ -231,7 +231,7 @@ class _AsignarExamenesState extends State<AsignarExamenes> {
                           : const Icon(Icons.settings_applications_rounded),
                   trailing: ElevatedButton(
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.resolveWith(
+                      foregroundColor: WidgetStateProperty.resolveWith(
                           (states) => const Color.fromARGB(255, 229, 255, 136)),
                       backgroundColor: bgColor,
                     ),
