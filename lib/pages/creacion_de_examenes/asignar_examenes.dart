@@ -261,7 +261,7 @@ class _AsignarExamenesState extends State<AsignarExamenes> {
   }
 
   void busqueda(value) {
-    if (value.length > 3) {
+    if (value.length > 1) {
       procedimientoss = widget.procedimientos
           .where((Procedimientos procedimiento) =>
               procedimiento.nombre!.toLowerCase().contains(value.toLowerCase()))
