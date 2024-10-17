@@ -36,9 +36,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    if (Platform.isWindows) {
+    /*  if (Platform.isWindows) {
       DesktopWindow.setWindowSize(const Size(600, 900));
-    }
+    } */
   }
 
   @override
