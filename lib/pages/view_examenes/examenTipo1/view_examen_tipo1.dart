@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
@@ -6,6 +6,7 @@ import 'package:mycar/functions/examenes.dart';
 import 'package:mycar/models/examen-model.dart';
 import 'package:mycar/models/examen_tipo1_model.dart';
 import 'package:mycar/models/paciente.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
 import 'package:mycar/widgets/text_field.dart';
@@ -34,19 +35,30 @@ class _ViewExamenTipo1State extends State<ViewExamenTipo1> {
   ExamenTipo1 examenS = ExamenTipo1();
   late TextEditingController valoracionController;
   late TextEditingController observacionesController;
+  late TextEditingController fechaResultadosController;
   @override
   void initState() {
     super.initState();
     try {
       valoracionController =
-          TextEditingController(text: widget.examen.valoracion!);
+          TextEditingController(text: widget.examen.valoracion ?? '');
       observacionesController =
-          TextEditingController(text: widget.examen.observaciones!);
+          TextEditingController(text: widget.examen.observaciones ?? '');
+      fechaResultadosController = TextEditingController(
+          text: widget.examen.fechaResultados ?? widget.fecha);
     } catch (e) {
       print(e);
     }
 
     examenS = widget.examen;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    valoracionController.dispose();
+    observacionesController.dispose();
+    fechaResultadosController.dispose();
   }
 
   @override
@@ -170,7 +182,7 @@ class _ViewExamenTipo1State extends State<ViewExamenTipo1> {
                 ),
                 const SizedBox(width: 2),
                 Container(
-                  constraints: const BoxConstraints(maxWidth: 250),
+                  constraints: const BoxConstraints(maxWidth: 270),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -224,6 +236,7 @@ class _ViewExamenTipo1State extends State<ViewExamenTipo1> {
               examenS.observaciones = observacionesController.text;
               examenS.identificacion = widget.paciente.identificacion;
               examenS.fecha = widget.fecha;
+              examenS.fechaResultados = fechaResultadosController.text;
             },
             child: Column(
               children: [
@@ -259,6 +272,17 @@ class _ViewExamenTipo1State extends State<ViewExamenTipo1> {
                       labelText: 'Observaciones',
                       controller: observacionesController),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: 0.95 * MediaQuery.of(context).size.width,
+                  child: buildDatePicker(
+                    context,
+                    fechaResultadosController,
+                    'Fecha de Resultados',
+                  ),
+                )
               ],
             ),
           ),

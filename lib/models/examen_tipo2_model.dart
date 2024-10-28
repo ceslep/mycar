@@ -27,6 +27,7 @@ class ExamenTipo2 {
   String? nombreExamen;
   String? constant;
   String? unidades;
+  String? fechaResultados;
 
   ExamenTipo2({
     this.ind,
@@ -46,27 +47,28 @@ class ExamenTipo2 {
     this.nombreExamen,
     this.constant,
     this.unidades,
+    this.fechaResultados,
   });
 
   factory ExamenTipo2.fromJson(Map<String?, dynamic> json) => ExamenTipo2(
-        ind: json["ind"].toString(),
-        identificacion: json["identificacion"].toString(),
-        examen: json["examen"].toString(),
-        valoracion: json["valoracion"].toString(),
-        fecha: json["fecha"].toString(),
-        bacteriologo: json["bacteriologo"].toString(),
-        examenind: json["examenind"].toString(),
-        citasind: json["citasind"].toString(),
-        indice: json["indice"].toString(),
-        entidad: json["entidad"].toString(),
-        departamento: json["departamento"].toString(),
-        hora: json["hora"].toString(),
-        observaciones: json["observaciones"].toString(),
-        pyp: json["pyp"].toString(),
-        nombreExamen: json["nombreExamen"].toString(),
-        constant: json["constant"].toString(),
-        unidades: json["unidades"].toString(),
-      );
+      ind: json["ind"].toString(),
+      identificacion: json["identificacion"].toString(),
+      examen: json["examen"].toString(),
+      valoracion: json["valoracion"].toString(),
+      fecha: json["fecha"].toString(),
+      bacteriologo: json["bacteriologo"].toString(),
+      examenind: json["examenind"].toString(),
+      citasind: json["citasind"].toString(),
+      indice: json["indice"].toString(),
+      entidad: json["entidad"].toString(),
+      departamento: json["departamento"].toString(),
+      hora: json["hora"].toString(),
+      observaciones: json["observaciones"].toString(),
+      pyp: json["pyp"].toString(),
+      nombreExamen: json["nombreExamen"].toString(),
+      constant: json["constant"].toString(),
+      unidades: json["unidades"].toString(),
+      fechaResultados: json["fechaResultados"].toString());
 
   Map<String?, dynamic> toJson() => {
         "ind": ind,
@@ -86,5 +88,6 @@ class ExamenTipo2 {
         "nombreExamen": nombreExamen,
         "constant": constant,
         "unidades": unidades,
+        "fechaResultados": fechaResultados
       };
 }

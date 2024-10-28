@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/coprologico.dart';
 import 'package:mycar/models/paciente.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
 
@@ -59,6 +62,7 @@ class _CoprologicoState extends State<ViewCoprologico> {
   late final TextEditingController _sangreOcultaController;
   late final TextEditingController _leucocitosController;
   late final TextEditingController _observacionesController;
+  late TextEditingController _fechaResultadosController;
 
   bool guardando_ = false;
 
@@ -160,6 +164,8 @@ class _CoprologicoState extends State<ViewCoprologico> {
         TextEditingController(text: widget.coprologico.lecucocitos);
     _observacionesController =
         TextEditingController(text: widget.coprologico.observaciones);
+    _fechaResultadosController = TextEditingController(
+        text: widget.coprologico.fechaResultados ?? widget.fecha);
   }
 
   Widget _buildTextField(String labelText, TextEditingController controller) {
@@ -395,6 +401,8 @@ class _CoprologicoState extends State<ViewCoprologico> {
                   coprologicoS.observaciones = _observacionesController.text;
                   coprologicoS.identificacion = widget.paciente.identificacion;
                   coprologicoS.fecha = widget.fecha;
+                  coprologicoS.fechaResultados =
+                      _fechaResultadosController.text;
                 },
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(16),
@@ -458,6 +466,17 @@ class _CoprologicoState extends State<ViewCoprologico> {
                       _buildTextField('leucocitos', _leucocitosController),
                       _buildTextField(
                           'observaciones', _observacionesController),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: 0.95 * MediaQuery.of(context).size.width,
+                        child: buildDatePicker(
+                          context,
+                          _fechaResultadosController,
+                          'Fecha de Resultados',
+                        ),
+                      )
                     ],
                   ),
                 ),

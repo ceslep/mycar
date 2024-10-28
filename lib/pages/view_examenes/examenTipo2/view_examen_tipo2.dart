@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
@@ -6,6 +6,7 @@ import 'package:mycar/functions/examenes.dart';
 import 'package:mycar/models/examen-model.dart';
 import 'package:mycar/models/examen_tipo2_model.dart';
 import 'package:mycar/models/paciente.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
 import 'package:mycar/widgets/text_field.dart';
@@ -34,6 +35,7 @@ class _ViewExamenTipo2State extends State<ViewExamenTipo2> {
   ExamenTipo2 examenS = ExamenTipo2();
   late TextEditingController valoracionController;
   late TextEditingController observacionesController;
+  late TextEditingController fechaResultadosController;
 
   @override
   void initState() {
@@ -46,6 +48,8 @@ class _ViewExamenTipo2State extends State<ViewExamenTipo2> {
       observacionesController =
           TextEditingController(text: widget.examen.observaciones!);
     }
+    fechaResultadosController = TextEditingController(
+        text: widget.examen.fechaResultados ?? widget.fecha);
     examenS = widget.examen;
   }
 
@@ -217,6 +221,7 @@ class _ViewExamenTipo2State extends State<ViewExamenTipo2> {
               examenS.observaciones = observacionesController.text;
               examenS.identificacion = widget.paciente.identificacion;
               examenS.fecha = widget.fecha;
+              examenS.fechaResultados = fechaResultadosController.text;
               print({"valoracionF": valoracionController.text});
             },
             child: Padding(
@@ -256,6 +261,17 @@ class _ViewExamenTipo2State extends State<ViewExamenTipo2> {
                         labelText: 'Observaciones',
                         controller: observacionesController),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    width: 0.95 * MediaQuery.of(context).size.width,
+                    child: buildDatePicker(
+                      context,
+                      fechaResultadosController,
+                      'Fecha de Resultados',
+                    ),
+                  )
                 ],
               ),
             ),

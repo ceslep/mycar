@@ -68,12 +68,13 @@ class _VerPorFechaState extends State<VerPorFecha> {
               itemBuilder: (context, index) {
                 if (index == 0) {
                   return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: buildDatePicker(
-                        context,
-                        _fechaController,
-                        'Fecha de Exámenes',
-                      ));
+                    padding: const EdgeInsets.all(8.0),
+                    child: buildDatePicker(
+                      context,
+                      _fechaController,
+                      'Fecha de Exámenes',
+                    ),
+                  );
                 } else {
                   int indexx = index - 1;
                   String nombreCompleto = pacientess[indexx].nombreCompleto;

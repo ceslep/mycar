@@ -50,6 +50,7 @@ class Coprologico {
   String? observaciones;
   String? bacteriologo;
   String? fechahora;
+  String? fechaResultados;
 
   Coprologico({
     this.id,
@@ -92,6 +93,7 @@ class Coprologico {
     this.observaciones,
     this.bacteriologo,
     this.fechahora,
+    this.fechaResultados,
   });
 
   factory Coprologico.fromJson(Map<String, dynamic> json) => Coprologico(
@@ -143,6 +145,7 @@ class Coprologico {
         observaciones: json["observaciones"].toString(),
         bacteriologo: json["bacteriologo"].toString(),
         fechahora: json["fechahora"].toString(),
+        fechaResultados: json["fechaResultados"].toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -186,5 +189,6 @@ class Coprologico {
         "observaciones": observaciones,
         "bacteriologo": bacteriologo,
         "fechahora": fechahora,
+        "fechaResultados": fechaResultados
       };
 }

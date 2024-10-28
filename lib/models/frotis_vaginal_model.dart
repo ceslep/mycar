@@ -29,6 +29,7 @@ class FrotisVaginal {
   String? intracelulares;
   String? extracelulares;
   String? observaciones;
+  String? fechaResultados;
 
   FrotisVaginal({
     this.identificacion,
@@ -50,6 +51,7 @@ class FrotisVaginal {
     this.intracelulares,
     this.extracelulares,
     this.observaciones,
+    this.fechaResultados,
   });
 
   factory FrotisVaginal.fromJson(Map<String, dynamic> json) => FrotisVaginal(
@@ -72,6 +74,7 @@ class FrotisVaginal {
         intracelulares: json["intracelulares"].toString(),
         extracelulares: json["extracelulares"].toString(),
         observaciones: json["observaciones"].toString(),
+        fechaResultados: json["fechaResultados"].toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -94,5 +97,6 @@ class FrotisVaginal {
         "intracelulares": intracelulares,
         "extracelulares": extracelulares,
         "observaciones": observaciones,
+        "fechaResultados": fechaResultados
       };
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mycar/models/hg_rayto.dart';
 import 'package:mycar/providers/hrayto_provider.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:provider/provider.dart';
 
 class FormHemogramaNew extends StatefulWidget {
@@ -47,6 +48,7 @@ class _FormHemogramaState extends State<FormHemogramaNew> {
   TextEditingController pctController = TextEditingController();
   TextEditingController pLcrController = TextEditingController();
   TextEditingController observacionesController = TextEditingController();
+  TextEditingController fechaResultadosController = TextEditingController();
 
   HRayto getHemograma() {
     return hrayto;
@@ -146,6 +148,17 @@ class _FormHemogramaState extends State<FormHemogramaNew> {
         'Observaciones',
         observacionesController,
       ),
+      SizedBox(
+        height: 10,
+      ),
+      SizedBox(
+        width: 0.95 * MediaQuery.of(context).size.width,
+        child: buildDatePicker(
+          context,
+          fechaResultadosController,
+          'Fecha de Resultados',
+        ),
+      )
     ];
   }
 
@@ -195,6 +208,9 @@ class _FormHemogramaState extends State<FormHemogramaNew> {
       hraytoProvider.hrayto.fecha = widget.fecha;
       observacionesController.text = widget.hemograma.observaciones!;
       hraytoProvider.hrayto.observaciones = observacionesController.text;
+      fechaResultadosController.text =
+          widget.hemograma.fechaResultados ?? widget.fecha;
+      hraytoProvider.hrayto.fechaResultados = widget.fecha;
     }
   }
 
@@ -228,6 +244,7 @@ class _FormHemogramaState extends State<FormHemogramaNew> {
       formKey: _formKey,
       formFields: formFields,
       observacionesController: observacionesController,
+      fechaResultadosController: fechaResultadosController,
     );
   }
 
@@ -283,6 +300,7 @@ class Formulario extends StatelessWidget {
     required this.identificacion,
     required this.fecha,
     required this.observacionesController,
+    required this.fechaResultadosController,
   }) : _formKey = formKey;
 
   final HRayto hrayto;
@@ -307,6 +325,7 @@ class Formulario extends StatelessWidget {
   final TextEditingController pctController;
   final TextEditingController pLcrController;
   final TextEditingController observacionesController;
+  final TextEditingController fechaResultadosController;
   final HRaytoProvider hraytoProvider;
   final GlobalKey<FormState> _formKey;
   final List<Widget> formFields;
@@ -338,6 +357,7 @@ class Formulario extends StatelessWidget {
         hrayto.pCT = pctController.text;
         hrayto.pLCR = pLcrController.text;
         hrayto.observaciones = observacionesController.text;
+        hrayto.fechaResultados = fechaResultadosController.text;
         hrayto.identificacion = identificacion;
         hrayto.fecha = fecha;
         hraytoProvider.setData(hrayto);

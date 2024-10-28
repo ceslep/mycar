@@ -21,34 +21,35 @@ class PerfilLipidico {
   String? indiceArterial;
   String? bacteriologo;
   String? observaciones;
+  String? fechaResultados;
 
-  PerfilLipidico({
-    this.id,
-    this.identificacion,
-    this.fecha,
-    this.colesterolTotal,
-    this.colesterolHdl,
-    this.colesterolVldl,
-    this.colesterolLdl,
-    this.trigliceridos,
-    this.indiceArterial,
-    this.bacteriologo,
-    this.observaciones,
-  });
+  PerfilLipidico(
+      {this.id,
+      this.identificacion,
+      this.fecha,
+      this.colesterolTotal,
+      this.colesterolHdl,
+      this.colesterolVldl,
+      this.colesterolLdl,
+      this.trigliceridos,
+      this.indiceArterial,
+      this.bacteriologo,
+      this.observaciones,
+      this.fechaResultados});
 
   factory PerfilLipidico.fromJson(Map<String?, dynamic> json) => PerfilLipidico(
-        id: json["id"],
-        identificacion: json["identificacion"],
-        fecha: json["fecha"],
-        colesterolTotal: json["colesterol_total"],
-        colesterolHdl: json["colesterol_hdl"],
-        colesterolVldl: json["colesterol_vldl"],
-        colesterolLdl: json["colesterol_ldl"],
-        trigliceridos: json["trigliceridos"],
-        indiceArterial: json["indice_arterial"],
-        bacteriologo: json["bacteriologo"],
-        observaciones: json["observaciones"],
-      );
+      id: json["id"],
+      identificacion: json["identificacion"],
+      fecha: json["fecha"],
+      colesterolTotal: json["colesterol_total"],
+      colesterolHdl: json["colesterol_hdl"],
+      colesterolVldl: json["colesterol_vldl"],
+      colesterolLdl: json["colesterol_ldl"],
+      trigliceridos: json["trigliceridos"],
+      indiceArterial: json["indice_arterial"],
+      bacteriologo: json["bacteriologo"],
+      observaciones: json["observaciones"],
+      fechaResultados: json["fechaResultados"]);
 
   Map<String?, dynamic> toJson() => {
         "id": id,
@@ -62,5 +63,6 @@ class PerfilLipidico {
         "indice_arterial": indiceArterial,
         "bacteriologo": bacteriologo,
         "observaciones": observaciones,
+        "fechaResultados": fechaResultados
       };
 }

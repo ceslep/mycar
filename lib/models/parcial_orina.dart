@@ -42,6 +42,7 @@ class ParcialOrina {
   String? observaciones;
   String? bacteriologo;
   String? fechahora;
+  String? fechaResultados;
 
   ParcialOrina({
     this.id,
@@ -76,6 +77,7 @@ class ParcialOrina {
     this.observaciones,
     this.bacteriologo,
     this.fechahora,
+    this.fechaResultados,
   });
 
   factory ParcialOrina.fromJson(Map<String, dynamic> json) => ParcialOrina(
@@ -111,6 +113,7 @@ class ParcialOrina {
         observaciones: json["observaciones"].toString(),
         bacteriologo: json["doctor"].toString(),
         fechahora: json["fechahora"].toString(),
+        fechaResultados: json["fechaResultados"].toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -145,6 +148,7 @@ class ParcialOrina {
         "cilindros_granulosos": cilindrosGranulosos,
         "observaciones": observaciones,
         "bacteriologo": bacteriologo,
-        "fechahora": fechahora
+        "fechahora": fechahora,
+        "fechaResultados": fechaResultados,
       };
 }

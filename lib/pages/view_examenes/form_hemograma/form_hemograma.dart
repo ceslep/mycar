@@ -49,6 +49,7 @@ class _FormHemogramaState extends State<FormHemograma> {
   TextEditingController pctController = TextEditingController();
   TextEditingController pLcrController = TextEditingController();
   TextEditingController observacionesController = TextEditingController();
+  TextEditingController fechaResultadosController = TextEditingController();
 
   HRayto getHemograma() {
     return hrayto;

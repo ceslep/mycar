@@ -31,6 +31,7 @@ class HRayto {
   String? observaciones;
   String? bacteriologo;
   String? fechahora;
+  String? fechaResultados;
 
   HRayto(
       {this.id,
@@ -58,7 +59,8 @@ class HRayto {
       this.pLCR,
       this.observaciones,
       this.bacteriologo,
-      this.fechahora});
+      this.fechahora,
+      this.fechaResultados});
 
   List<dynamic> get publicProperties => [
         id,
@@ -86,37 +88,38 @@ class HRayto {
         pLCR,
         observaciones,
         bacteriologo,
-        fechahora
+        fechahora,
+        fechaResultados
       ];
 
   factory HRayto.fromJson(Map<String, dynamic> json) => HRayto(
-        id: json['id'].toString(),
-        identificacion: json['identificacion'].toString(),
-        fecha: json['fecha'].toString(),
-        wBC: json['WBC'].toString(),
-        lYMn: json['LYMn'].toString(),
-        mIDn: json['MIDn'].toString(),
-        gRAn: json['GRAn'].toString(),
-        lYMp: json['LYMp'].toString(),
-        mIDp: json['MIDp'].toString(),
-        gRAp: json['GRAp'].toString(),
-        rBC: json['RBC'].toString(),
-        hGB: json['HGB'].toString(),
-        mCHC: json['MCHC'].toString(),
-        mCH: json['MCH'].toString(),
-        mCV: json['MCV'].toString(),
-        rDWCV: json['RDWCV'].toString(),
-        rDWSD: json['RDWSD'].toString(),
-        hCT: json['HCT'].toString(),
-        pLT: json['PLT'].toString(),
-        mPV: json['MPV'].toString(),
-        pDW: json['PDW'].toString(),
-        pCT: json['PCT'].toString(),
-        pLCR: json['PLCR'].toString(),
-        observaciones: json['observaciones'].toString(),
-        bacteriologo: json['bacteriologo'].toString(),
-        fechahora: json['fechahora'].toString(),
-      );
+      id: json['id'].toString(),
+      identificacion: json['identificacion'].toString(),
+      fecha: json['fecha'].toString(),
+      wBC: json['WBC'].toString(),
+      lYMn: json['LYMn'].toString(),
+      mIDn: json['MIDn'].toString(),
+      gRAn: json['GRAn'].toString(),
+      lYMp: json['LYMp'].toString(),
+      mIDp: json['MIDp'].toString(),
+      gRAp: json['GRAp'].toString(),
+      rBC: json['RBC'].toString(),
+      hGB: json['HGB'].toString(),
+      mCHC: json['MCHC'].toString(),
+      mCH: json['MCH'].toString(),
+      mCV: json['MCV'].toString(),
+      rDWCV: json['RDWCV'].toString(),
+      rDWSD: json['RDWSD'].toString(),
+      hCT: json['HCT'].toString(),
+      pLT: json['PLT'].toString(),
+      mPV: json['MPV'].toString(),
+      pDW: json['PDW'].toString(),
+      pCT: json['PCT'].toString(),
+      pLCR: json['PLCR'].toString(),
+      observaciones: json['observaciones'].toString(),
+      bacteriologo: json['bacteriologo'].toString(),
+      fechahora: json['fechahora'].toString(),
+      fechaResultados: json['fechaResultados']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -145,5 +148,6 @@ class HRayto {
         'observaciones': observaciones,
         'bacteriologo': bacteriologo,
         'fechahora': fechahora,
+        'fechaResultados': fechaResultados
       };
 }

@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/frotis_vaginal_model.dart';
 import 'package:mycar/models/paciente.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
 
@@ -42,6 +45,7 @@ class _ViewFrotisVaginalState extends State<ViewFrotisVaginal> {
   late final TextEditingController _intracelularesController;
   late final TextEditingController _extracelularesController;
   late final TextEditingController _observacionesController;
+  late final TextEditingController _fechaResultadosController;
 
   @override
   void initState() {
@@ -78,6 +82,8 @@ class _ViewFrotisVaginalState extends State<ViewFrotisVaginal> {
         TextEditingController(text: widget.frotisVaginal.extracelulares);
     _observacionesController =
         TextEditingController(text: widget.frotisVaginal.observaciones);
+    _fechaResultadosController =
+        TextEditingController(text: widget.frotisVaginal.fechaResultados ?? '');
   }
 
   Widget _buildTextField(String labelText, TextEditingController controller) {
@@ -283,6 +289,8 @@ class _ViewFrotisVaginalState extends State<ViewFrotisVaginal> {
                   frotisVaginalS.extracelulares =
                       _extracelularesController.text;
                   frotisVaginalS.observaciones = _observacionesController.text;
+                  frotisVaginalS.fechaResultados =
+                      _fechaResultadosController.text;
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -318,6 +326,17 @@ class _ViewFrotisVaginalState extends State<ViewFrotisVaginal> {
                           'Extracelulares ', _extracelularesController),
                       _buildTextField(
                           'Observaciones ', _observacionesController),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: 0.95 * MediaQuery.of(context).size.width,
+                        child: buildDatePicker(
+                          context,
+                          _fechaResultadosController,
+                          'Fecha de Resultados',
+                        ),
+                      )
                     ],
                   ),
                 ),

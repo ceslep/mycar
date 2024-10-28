@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/paciente.dart';
 import 'package:mycar/models/parcial_orina.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
 
@@ -51,6 +54,7 @@ class _ParcialOrinaState extends State<ViewParcialOrina> {
   late final TextEditingController cilindrosHialinosController;
   late final TextEditingController cilindrosGranulososController;
   late final TextEditingController observacionesController;
+  late final TextEditingController fechaResultadosController;
 
   @override
   void initState() {
@@ -105,6 +109,8 @@ class _ParcialOrinaState extends State<ViewParcialOrina> {
         TextEditingController(text: widget.parcialOrina.cilindrosGranulosos);
     observacionesController =
         TextEditingController(text: widget.parcialOrina.observaciones);
+    fechaResultadosController = TextEditingController(
+        text: widget.parcialOrina.fechaResultados ?? widget.fecha);
   }
 
   Widget _buildTextField(String labelText, TextEditingController controller) {
@@ -313,6 +319,8 @@ class _ParcialOrinaState extends State<ViewParcialOrina> {
                   parcialOrinaS.observaciones = observacionesController.text;
                   parcialOrinaS.identificacion = widget.paciente.identificacion;
                   parcialOrinaS.fecha = widget.fecha;
+                  parcialOrinaS.fechaResultados =
+                      fechaResultadosController.text;
                 },
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(16),
@@ -354,6 +362,17 @@ class _ParcialOrinaState extends State<ViewParcialOrina> {
                       _buildTextField('Cilindros Granulosos',
                           cilindrosGranulososController),
                       _buildTextField('Observaciones', observacionesController),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: 0.95 * MediaQuery.of(context).size.width,
+                        child: buildDatePicker(
+                          context,
+                          fechaResultadosController,
+                          'Fecha de Resultados',
+                        ),
+                      )
                     ],
                   ),
                 ),

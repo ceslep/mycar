@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/paciente.dart';
 import 'package:mycar/models/perfil_lipidico_model.dart';
 import 'package:mycar/widgets/appbar/appbare.dart';
+import 'package:mycar/widgets/date_picker.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
 
@@ -33,23 +36,26 @@ class _ViewPerfilLipidicoState extends State<ViewPerfilLipidico> {
   late final TextEditingController indiceArterialController;
   late final TextEditingController bacteriologoController;
   late final TextEditingController observacionesController;
+  late final TextEditingController fechaResultadosController;
   @override
   void initState() {
     super.initState();
-    colesterolTotalController =
-        TextEditingController(text: widget.perfilLipidico.colesterolTotal);
+    colesterolTotalController = TextEditingController(
+        text: widget.perfilLipidico.colesterolTotal ?? '');
     colesterolHdlController =
-        TextEditingController(text: widget.perfilLipidico.colesterolHdl);
+        TextEditingController(text: widget.perfilLipidico.colesterolHdl ?? '');
     colesterolVldlController =
-        TextEditingController(text: widget.perfilLipidico.colesterolVldl);
+        TextEditingController(text: widget.perfilLipidico.colesterolVldl ?? '');
     colesterolLdlController =
-        TextEditingController(text: widget.perfilLipidico.colesterolLdl);
+        TextEditingController(text: widget.perfilLipidico.colesterolLdl ?? '');
     trigliceridosController =
-        TextEditingController(text: widget.perfilLipidico.trigliceridos);
+        TextEditingController(text: widget.perfilLipidico.trigliceridos ?? '');
     indiceArterialController =
-        TextEditingController(text: widget.perfilLipidico.indiceArterial);
+        TextEditingController(text: widget.perfilLipidico.indiceArterial ?? '');
     observacionesController =
-        TextEditingController(text: widget.perfilLipidico.observaciones);
+        TextEditingController(text: widget.perfilLipidico.observaciones ?? '');
+    fechaResultadosController = TextEditingController(
+        text: widget.perfilLipidico.fechaResultados ?? widget.fecha);
   }
 
   Widget _buildTextField(String labelText, TextEditingController controller) {
@@ -191,6 +197,8 @@ class _ViewPerfilLipidicoState extends State<ViewPerfilLipidico> {
                   perfilLipidicoS.identificacion =
                       widget.paciente.identificacion;
                   perfilLipidicoS.fecha = widget.fecha;
+                  perfilLipidicoS.fechaResultados =
+                      fechaResultadosController.text;
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -208,6 +216,17 @@ class _ViewPerfilLipidicoState extends State<ViewPerfilLipidico> {
                       _buildTextField(
                           'Indice Arterial', indiceArterialController),
                       _buildTextField('Observaciones', observacionesController),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: 0.95 * MediaQuery.of(context).size.width,
+                        child: buildDatePicker(
+                          context,
+                          fechaResultadosController,
+                          'Fecha de Resultados',
+                        ),
+                      )
                     ],
                   ),
                 ),
