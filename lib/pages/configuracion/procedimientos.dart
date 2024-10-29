@@ -5,7 +5,6 @@ import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/procedimientos_model.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
-import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 
 class ProcedimientosPage extends StatefulWidget {
   final Procedimientos procedimiento;
@@ -245,9 +244,6 @@ class _ProcedimientosPageState extends State<ProcedimientosPage> {
                       labelText: 'Constante 2',
                     ),
                   ),
-                ),
-                HtmlContentViewer(
-                  htmlContent: constante2Controller.text,
                 ),
               ],
             ),
