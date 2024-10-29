@@ -29,6 +29,7 @@ class _VerPorFechaState extends State<VerPorFecha> {
       () {
         print(_fechaController.text);
         setState(() {
+          pacientess = [];
           consultando = !consultando;
         });
         getPacientesFecha(context, _fechaController.text).then(
@@ -49,15 +50,29 @@ class _VerPorFechaState extends State<VerPorFecha> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Lista de Pacientes',
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Text(
+                  'Lista de Pacientes',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 5),
+                consultando
+                    ? SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : SizedBox()
+              ],
             ),
           ],
         ),

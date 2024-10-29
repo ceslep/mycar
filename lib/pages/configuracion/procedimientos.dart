@@ -1,10 +1,11 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/procedimientos_model.dart';
 import 'package:mycar/widgets/modals/floating_modal.dart';
 import 'package:mycar/widgets/modals/modal_fit.dart';
+import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 
 class ProcedimientosPage extends StatefulWidget {
   final Procedimientos procedimiento;
@@ -26,6 +27,7 @@ class _ProcedimientosPageState extends State<ProcedimientosPage> {
   final TextEditingController tipoProcedimientoController =
       TextEditingController();
   final TextEditingController abreviaturaController = TextEditingController();
+  final TextEditingController constante2Controller = TextEditingController();
   late Procedimientos procedimientoss;
   String color = "";
   List<String> colores = [];
@@ -43,6 +45,7 @@ class _ProcedimientosPageState extends State<ProcedimientosPage> {
     tipoController.text = widget.procedimiento.tipo!;
     tipoProcedimientoController.text = widget.procedimiento.tipoprocedimiento!;
     abreviaturaController.text = widget.procedimiento.abreviatura!;
+    constante2Controller.text = widget.procedimiento.constante2 ?? '';
     procedimientoss = widget.procedimiento;
   }
 
@@ -65,6 +68,7 @@ class _ProcedimientosPageState extends State<ProcedimientosPage> {
               tipoController.text = '';
               tipoProcedimientoController.text = '';
               abreviaturaController.text = '';
+              constante2Controller.text = '';
               colorController.text = '';
             },
             icon: const Icon(Icons.new_releases, color: Colors.white),
@@ -116,6 +120,7 @@ class _ProcedimientosPageState extends State<ProcedimientosPage> {
               procedimientoss.tipoprocedimiento =
                   tipoProcedimientoController.text,
               procedimientoss.abreviatura = abreviaturaController.text,
+              procedimientoss.constante2 = constante2Controller.text,
               print(procedimientoss.toJson()),
               color = colorController.text,
               if (color.isNotEmpty)
@@ -229,6 +234,20 @@ class _ProcedimientosPageState extends State<ProcedimientosPage> {
                       labelText: 'Abreviatura',
                     ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: constante2Controller,
+                    maxLines: 30,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Constante 2',
+                    ),
+                  ),
+                ),
+                HtmlContentViewer(
+                  htmlContent: constante2Controller.text,
                 ),
               ],
             ),

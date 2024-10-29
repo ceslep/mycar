@@ -21,6 +21,7 @@ class Procedimientos {
   String? tipo;
   String? tipoprocedimiento;
   String? abreviatura;
+  String? constante2;
 
   Procedimientos({
     this.ind,
@@ -34,6 +35,7 @@ class Procedimientos {
     this.tipo,
     this.tipoprocedimiento,
     this.abreviatura,
+    this.constante2,
   });
 
   factory Procedimientos.fromJson(Map<String, dynamic> json) => Procedimientos(
@@ -48,6 +50,7 @@ class Procedimientos {
         tipo: json["tipo"],
         tipoprocedimiento: json["tipoprocedimiento"],
         abreviatura: json["abreviatura"],
+        constante2: json["constante2"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,5 +65,6 @@ class Procedimientos {
         "tipo": tipo,
         "tipoprocedimiento": tipoprocedimiento,
         "abreviatura": abreviatura,
+        "constante2": constante2
       };
 }

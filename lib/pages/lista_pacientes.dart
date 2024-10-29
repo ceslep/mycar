@@ -127,6 +127,9 @@ class _ListaPacientesState extends State<ListaPacientes> {
                         suffixIcon: IconButton(
                           onPressed: () {
                             _controller.clear();
+                            setState(() {
+                              //   pacientes = [];
+                            });
                             buscarChanged('');
                           },
                           icon: const Icon(Icons.clear),
