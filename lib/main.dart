@@ -1,14 +1,11 @@
 // ignore_for_file: avoid_print
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mycar/pages/home_laboratorio.dart';
 import 'package:mycar/providers/hrayto_provider.dart';
 import 'package:mycar/providers/url_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:desktop_window/desktop_window.dart';
 
 const String titleApp = 'Laboratorio';
 const Color colorTheme = Color.fromARGB(255, 22, 21, 105);
