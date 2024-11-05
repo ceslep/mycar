@@ -53,7 +53,8 @@ dependencies:
   webview_flutter_platform_interface: ^2.10.0
   image_picker: ^1.1.1
   dropdown_textfield: ^1.0.8
-
+  confirm_dialog: ^1.0.4
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,12 +1,12 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mycar/api/api_laboratorio.dart';
 import 'package:mycar/models/paciente.dart';
+import 'package:mycar/pages/consulta_examenes.dart';
 import 'package:mycar/widgets/date_picker.dart';
-
-import '../../consulta_examenes.dart';
+import 'package:confirm_dialog/confirm_dialog.dart';
 
 class VerPorFecha extends StatefulWidget {
   final List<Paciente> pacientes;
@@ -100,10 +100,35 @@ class _VerPorFechaState extends State<VerPorFecha> {
                     child: ListTile(
                       title: Text(nombreCompleto),
                       subtitle: Text(identificacion),
-                      leading: CircleAvatar(
-                        backgroundImage: sexo == 'Masculino'
-                            ? const AssetImage('images/male.png')
-                            : const AssetImage('images/female.png'),
+                      leading: GestureDetector(
+                        onTap: () async {
+                          if (await confirm(
+                            context,
+                            title: const Text('Eliminar'),
+                            content:
+                                const Text('Eliminar exámenes de éste día?'),
+                            textOK: const Text('Si'),
+                            textCancel: const Text('No'),
+                          )) {
+                            await eliminarExamen(
+                                context, identificacion, _fechaController.text);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Exámenes Eliminados'),
+                              ),
+                            );
+                            setState(() {
+                              pacientess.removeAt(indexx);
+                            });
+                          } else {
+                            return print('pressedCancel');
+                          }
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: sexo == 'Masculino'
+                              ? const AssetImage('images/male.png')
+                              : const AssetImage('images/female.png'),
+                        ),
                       ),
                       trailing: IconButton(
                         onPressed: () async {
@@ -118,7 +143,6 @@ class _VerPorFechaState extends State<VerPorFecha> {
                           );
                           if (result == 'home') {
                             if (mounted) {
-                              // ignore: use_build_context_synchronously
                               Navigator.pop(context, 'home');
                             }
                           }

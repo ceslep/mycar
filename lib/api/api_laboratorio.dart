@@ -799,3 +799,23 @@ Future<List<CodExamen>> getExamenesWithItems(BuildContext context) async {
     return [];
   }
 }
+
+Future<bool> eliminarExamen(
+    BuildContext context, String identificacion, String fecha) async {
+  final urlProvider = Provider.of<UrlProvider>(context, listen: false);
+  Uri url = Uri.parse('${urlProvider.url}eliminarExamen.php');
+  final String bodyData = json.encode({
+    "identificacion": identificacion,
+    "fecha": fecha,
+  });
+  try {
+    final response = await http.post(url, body: bodyData);
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    print(e);
+    return false;
+  }
+}
