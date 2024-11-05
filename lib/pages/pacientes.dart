@@ -436,7 +436,7 @@ class _PacientesState extends State<Pacientes> {
       DateTime dateTime =
           DateFormat("yyyy-MM-dd").parse(_fecnacController.text);
       Duration difference = DateTime.now().difference(dateTime);
-      return difference.inDays > 10;
+      return difference.inDays >= 0;
     }
     return false;
   }
